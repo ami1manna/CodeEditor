@@ -18,7 +18,7 @@ function App() {
     <hr></hr>
     <Box p={1} textAlign='center'>
       
-        Made with ❤️ from Amit Manna
+        <a href="https://github.com/ami1manna">Made By Amit Manna By ❤️ </a>
       
     </Box>
     </>
