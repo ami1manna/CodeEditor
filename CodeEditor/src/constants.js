@@ -11,7 +11,7 @@ export const CODE_SNIPPETS = {
     console.log("Hello, " + name + "!");
 }
 
-greet("Alex");`,
+greet("World");`,
     typescript: `type Params = {
     name: string;
 }
@@ -20,11 +20,11 @@ function greet(data: Params) {
     console.log("Hello, " + data.name + "!");
 }
 
-greet({ name: "Alex" });`,
+greet({ name: "World" });`,
     python: `def greet(name):
     print("Hello, " + name + "!")
     
-greet("Alex")`,
+greet("World")`,
     java: `public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
@@ -41,7 +41,7 @@ namespace HelloWorld {
 }`,
     php: `<?php
 
-$name = 'Alex';
+$name = 'World';
 echo $name;
->`,
+`,
 };
