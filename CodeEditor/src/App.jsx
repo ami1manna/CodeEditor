@@ -5,6 +5,7 @@ function App() {
 
 
   return (
+    <>
     <Box
       minH="100vh"
       bg='#0f0a19'
@@ -13,8 +14,14 @@ function App() {
       py={8}
     >
       <CodeEditor/>
-
     </Box>
+    <hr></hr>
+    <Box p={1} textAlign='center'>
+      
+        Made with ❤️ from Amit Manna
+      
+    </Box>
+    </>
   )
 }
 
