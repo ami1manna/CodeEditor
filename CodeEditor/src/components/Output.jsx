@@ -20,14 +20,14 @@ const Output = ({ editorRef, language }) => {
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-1.0-pro",
     });
 
     const generationConfig = {
-        temperature: 1,
-        topP: 0.95,
-        topK: 64,
-        maxOutputTokens: 8192,
+        temperature: 0.9,
+        topP: 1,
+        topK: 0,
+        maxOutputTokens: 2048,
         responseMimeType: "text/plain",
     };
 
@@ -49,9 +49,9 @@ const Output = ({ editorRef, language }) => {
             // Construct prompt based on error state
             let currentPrompt = '';
             if (!isError) {
-                currentPrompt = `* Focus on Making Time Complexity Less by effective utilization of Loops and Enhance and Optimise and Clean the code: \n${sourceCode} *Note : 1 . Give me only code No need to Explain so that i can directly copy paste it *2 . the code should secprated by \n escape sequence *3.language is ${language}  `;
+                currentPrompt = `* Focus on Making Time Complexity Less by effective utilization of Loops and Enhance and Optimise and Clean the code: \n${sourceCode} *Note : 1 . Give me only code No need to Explain so that i can directly copy paste it *2 . the code should secprated by \n escape sequence *3.language is ${language}  *4.give proper indentation (spaces) also`;
             } else {
-                currentPrompt = `Fix the error:\n${errorText.join('\n')}\nCode is:\n${sourceCode} *Note : 1 . Give me only code No need to Explain so that i can directly copy paste it *2. the code should secprated by \n escape sequence *3 language is ${language} `;
+                currentPrompt = `Fix the error:\n${errorText.join('\n')}\nCode is:\n${sourceCode} *Note : 1 . Give me only code No need to Explain so that i can directly copy paste it *2. Add  '\n' escape sequence in code for new line in code *3 language is ${language}  *4.give proper indentation (spaces) also`;
             }
 
             const chatSession = model.startChat({
@@ -62,17 +62,11 @@ const Output = ({ editorRef, language }) => {
             const result = await chatSession.sendMessage(currentPrompt); // Use current prompt as input
             const responseText = result.response.text();
 
-            // Check if response indicates an error
-            if (responseText.includes('Error')) {
-                setIsError(true);
-                setErrorText([responseText]);
-                setOutput([]);
-            } else {
                 setIsError(false);
                 setErrorText([]);
                 setOutput(responseText.split('\n').slice(1, -1));
                 console.log(responseText.split('\n').slice(1, -1));
-            }
+            
         } catch (error) {
             console.error('Error in AI enhancement:', error);
             toast({

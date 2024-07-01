@@ -27,6 +27,7 @@ const CodeEditor = () => {
       <HStack spacing={4} flexWrap="wrap">
         <Box w={isMobile ? "100%" : "48%"} mb={isMobile ? 4 : 0}>
           <LanguageSelector onSelect={onSelect} language={language} />
+          
           <Editor
             onMount={onMount}
             theme="vs-dark"
