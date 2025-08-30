@@ -6,6 +6,7 @@ function App() {
 
   return (
     <>
+    Dummy
     <Box
       minH="100vh"
       bg='#0f0a19'
